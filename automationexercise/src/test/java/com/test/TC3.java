@@ -1,5 +1,7 @@
 package com.test;
 
+import java.time.Duration;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -31,6 +33,7 @@ public class TC3 {
         
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver(options);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.manage().window().maximize();
 
     }

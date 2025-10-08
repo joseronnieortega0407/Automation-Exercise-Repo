@@ -1,5 +1,7 @@
 package com.test;
 
+import java.time.Duration;
+
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -30,6 +32,7 @@ public class TC4 {
         
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver(options);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.manage().window().maximize();
     }
 
@@ -69,8 +72,7 @@ public class TC4 {
         ExpectedConditions.elementToBeClickable(By.xpath("//a[@data-product-id='18' and contains(@class,'add-to-cart')]")));
         addToCartBtn.click();
 
-        WebElement viewCart = wait.until(
-        ExpectedConditions.elementToBeClickable(By.linkText("View Cart")));
+        WebElement viewCart = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("View Cart")));
         viewCart.click();
 
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[text()='Proceed To Checkout']"))).click();
