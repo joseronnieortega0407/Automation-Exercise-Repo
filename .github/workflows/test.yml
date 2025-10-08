@@ -33,9 +33,10 @@ jobs:
 
     - name: Build with Maven
       working-directory: automationexercise
-      run: mvn clean install -DskipTests
+      run: mvn -B clean install -DskipTests
 
     - name: Run Tests
+      working-directory: automationexercise
       run: mvn test
 
       
