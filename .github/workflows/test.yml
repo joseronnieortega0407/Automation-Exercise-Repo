@@ -29,7 +29,9 @@ jobs:
           ${{ runner.os }}-maven-
 
     - name: Build with Maven
+      working-directory: Automation-Exercise-Repo
       run: mvn clean install -DskipTests
 
     - name: Run Tests
+      working-directory: Automation-Exercise-Repo
       run: mvn test
