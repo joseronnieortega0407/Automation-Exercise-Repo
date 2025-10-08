@@ -1,7 +1,5 @@
 package com.test;
 
-import java.time.Duration;
-
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -11,10 +9,11 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class TC3 {
 
@@ -22,12 +21,17 @@ public class TC3 {
     private WebDriverWait wait;
 
 
-    @BeforeMethod
     @Before
     public void setUp() {
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless=new");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--window-size=1920,1080");
+        
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver(options);
         driver.manage().window().maximize();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
     }
 
@@ -38,7 +42,6 @@ public class TC3 {
     }
 
     @Test
-    @org.testng.annotations.Test
     public void testAddToCart() throws InterruptedException{
 
         // LAUNCH BROWSER
@@ -121,7 +124,6 @@ public class TC3 {
     } 
         
     @After
-    @AfterMethod
         public void tearDown(){
         	if (driver != null){
 			driver.quit();

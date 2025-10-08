@@ -39,4 +39,24 @@ jobs:
       working-directory: automationexercise
       run: mvn test
 
+    - name: Upload Test Reports
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: surefire-reports
+        path: automationexercise/target/surefire-reports
+
+    - name: Show test log output
+      if: failure()
+      run: cat automationexercise/target/surefire-reports/*.txt || true
+
+
+    - name: Set up Chrome for Selenium
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y google-chrome-stable
+        export DISPLAY=:99
+        Xvfb :99 -screen 0 1920x1080x24 &
+
+
       
