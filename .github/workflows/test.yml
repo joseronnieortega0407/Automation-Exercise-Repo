@@ -32,7 +32,7 @@ jobs:
           ${{ runner.os }}-maven-
 
     - name: Build with Maven
-      working-directory: automation-exercise
+      working-directory: automationexercise
       run: mvn clean install -DskipTests
 
     - name: Run Tests
